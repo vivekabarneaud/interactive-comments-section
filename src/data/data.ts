@@ -3,7 +3,7 @@ type Image = {
     webp: string;
 }
 
-type User = {
+export type User = {
     image: Image;
     username: string;
 }
