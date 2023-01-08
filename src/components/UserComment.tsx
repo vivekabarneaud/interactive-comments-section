@@ -11,7 +11,8 @@ type UserCommentProps = {
 
 function UserComment(props: UserCommentProps): JSX.Element {
     return (<div class="flex flex-col gap-y-3">
-        <div class="flex flex-col justify-between bg-white rounded p-4">
+        <div class="flex flex-col justify-between bg-white rounded-lg p-4">
+            
         <div class="flex flex-col gap-y-3">
             <div class="flex gap-x-4">
                 <img
@@ -36,8 +37,8 @@ function UserComment(props: UserCommentProps): JSX.Element {
             </div>
         </div>
     </div>
-    <div class="flex flex-col border-l-[2px] border-gray-200 pl-3">
 
+    <div class="flex flex-col border-l-[2px] border-gray-200 pl-3">
         <For each={props.comment.replies} >
             {reply => <UserComment comment={reply} />}
         </For>
