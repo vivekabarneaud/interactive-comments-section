@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div class="flex justify-center items-center min-h-screen w-screen bg-[#F5F6FA]">
       
-      <div class="flex flex-col w-[90%] gap-y-4">
+      <div class="flex flex-col w-[90%] gap-y-3">
         <For each={userComments}>
           {userComment => <UserComment comment={userComment} />}
         </For>
