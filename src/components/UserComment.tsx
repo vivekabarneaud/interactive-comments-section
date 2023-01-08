@@ -1,15 +1,22 @@
-import { JSX, Show, For } from "solid-js";
+import { JSX, Show, For, createSignal } from "solid-js";
 import { CommentType, currentUser } from "~/data/data";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 import LikeCounter from "./LikeCounter";
 import ReplyButton from "./ReplyButton";
+import DeleteModal from "./DeleteModal";
 
 type UserCommentProps = {
     comment: CommentType;
 }
 
 function UserComment(props: UserCommentProps): JSX.Element {
+    const [showModal, setShowModal] = createSignal<boolean>(false);
+
+    const handleDeleteComment = () => {
+        console.log("handle delete comment ", props.comment.id);
+    }
+
     return (<div class="flex flex-col gap-y-3">
         <div class="flex flex-col justify-between bg-white rounded-lg p-4">
             
@@ -30,7 +37,7 @@ function UserComment(props: UserCommentProps): JSX.Element {
                 <LikeCounter likes={props.comment.score} />
                 <div class="flex items-center gap-x-3">
                     <Show when={props.comment.user.username === currentUser.username} fallback={<ReplyButton />}>
-                        <DeleteButton />
+                        <DeleteButton commentId={props.comment.id} onClick={() => setShowModal(true)} />
                         <EditButton />
                     </Show>
                 </div>
@@ -43,6 +50,13 @@ function UserComment(props: UserCommentProps): JSX.Element {
             {reply => <UserComment comment={reply} />}
         </For>
     </div>
+        <Show when={showModal()}>
+            <DeleteModal
+                commentId={props.comment.id}
+                onClose={() => setShowModal(false)}
+                handleDeleteComment={handleDeleteComment}
+            />
+        </Show>
     </div>
     )
 }
