@@ -27,7 +27,7 @@ function UserComment(props: UserCommentProps): JSX.Element {
                     alt={"profile pic "+props.comment.user.username}
                     class="h-6 w-6"
                 />
-                <span class="text-xs font-bold text-gray-900">{props.comment.user.username}</span>
+                <span class="text-xs font-bold text-[#495159]">{props.comment.user.username}</span>
                 <span class="text-xs text-gray-500">{props.comment.createdAt}</span>
             </div>
             <p class="text-xs text-gray-500">
